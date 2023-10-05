@@ -3,13 +3,23 @@
   "version": "1.0.0",
   "description": "replication and new translation of suica game",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "keywords": [
     "suica",
     "game"
   ],
   "author": "Ailre",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "artistic-engine": "^1.2.10"
+  }
 }

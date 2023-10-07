@@ -2,9 +2,15 @@ import { Vector } from "artistic-engine";
 import { Sprite } from "artistic-engine/sprite";
 
 export abstract class PhysicalObject extends Sprite {
+    public isPhysical = true;
+
+    public elasticity = 0.7;
+
     public weight: number = 1;
     
-    public rotation: number = 0;
+    public angleVelocity: number = 0;
+
+    public CentorPosition: Vector.Vector2D = new Vector.Vector2D();
 
     public Velocity: Vector.Vector2D = new Vector.Vector2D();
 
@@ -12,6 +18,10 @@ export abstract class PhysicalObject extends Sprite {
 
     constructor(positionX: number, positionY: number) {
         super({ X: positionX, Y: positionY });
+    }
+
+    public get invertedWeight() {
+        return this.weight === 0 ? 0 : (1 / this.weight);
     }
     
     public get VelX() {
@@ -28,5 +38,21 @@ export abstract class PhysicalObject extends Sprite {
     
     public get AccelY() {
         return this.Acceleration.Y;
+    }
+
+    public set VelX(x: number) {
+        this.Velocity.X = x;
+    }
+    
+    public set VelY(y: number) {
+        this.Velocity.Y = y;
+    }
+    
+    public set AccelX(x: number) {
+        this.Acceleration.X = x;
+    }
+    
+    public set AccelY(y: number) {
+        this.Acceleration.Y = y;
     }
 }

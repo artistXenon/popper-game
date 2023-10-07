@@ -23,7 +23,7 @@ const assets = new EngineAssets(engine.AssetLoader);
 assets.onLoad = onLoad;
 
 function onResize() {  
-    engine.resizeCanvas({ w: 1920*0.8, h: 1080*0.8 });
+    engine.resizeCanvas(); // { w: 1920*0.8, h: 1080*0.8 }
     ResolutionVector2D.baseVector.X = engine.Canvas.width;
     ResolutionVector2D.baseVector.Y = engine.Canvas.height;
     if (engine.Scene instanceof Sprite) {

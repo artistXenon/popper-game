@@ -12,4 +12,5 @@ body {
   margin: 0;
   overflow: hidden;
   letter-spacing: 1px;
+  touch-action: none;
 }

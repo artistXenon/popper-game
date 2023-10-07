@@ -1,10 +1,17 @@
 import { Ball } from "../ball";
+import { HPeach } from "./h-peach";
 
-export class Cherry extends Ball {
+export class GPear extends Ball {
+    public get Score(): number {
+        return 28;
+    }
+    public onCollide(ball: Ball): Ball | undefined {
+        if (ball instanceof GPear) return new HPeach();
+    }
 
     constructor() {
-        super(0, 0, 35);
-        this.weight = 1;
+        super(0, 0, 140);
+        this.weight = 24;
     }
 
     
@@ -17,7 +24,7 @@ export class Cherry extends Ball {
         context.strokeStyle = "black";
         context.stroke();
 
-        context.fillStyle = "pink";
+        context.fillStyle = "purple";
         context.fill();
 
         // context.

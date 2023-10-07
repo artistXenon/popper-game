@@ -1,10 +1,10 @@
 import { IPointerListener } from "artistic-engine/event";
 import { Sprite } from "artistic-engine/sprite";
-import { Orange } from "./balls/orange";
+import { DOrange } from "./balls/d-orange";
 import { Ball } from "./ball";
-import { Cherry } from "./balls/cherry";
-import { Strawberry } from "./balls/strawberry";
-import { Berry } from "./balls/berry";
+import { BStrawBerry } from "./balls/b-strawberry";
+import { CGrape } from "./balls/c-grape";
+import { ACherry } from "./balls/a-cherry";
 
 export class Scene extends Sprite implements IPointerListener {
     private fruitInFocus: Ball | undefined
@@ -48,14 +48,14 @@ export class Scene extends Sprite implements IPointerListener {
     newFruit() {
         const chance = Math.floor(Math.random() * 100);
         if (chance < 25) {
-            return new Berry();
+            return new ACherry();
         }
         if (chance < 60) {
-            return new Cherry();
+            return new BStrawBerry();
         }
         if (chance < 92) {
-            return new Strawberry();
+            return new CGrape();
         }
-        return new Orange();
+        return new DOrange();
     }
 }

@@ -3,16 +3,16 @@ import { PointerEventGroup } from "artistic-engine/event";
 import { Global } from "./global";
 import { fixBalltoBallPenetration, fixBalltoWallPenetration, onBalltoBallCollision, updateKineticVector } from "./helper/physical-interaction";
 import { Ball } from "./sprites/ball";
-import { Orange } from "./sprites/balls/orange";
-import { Strawberry } from "./sprites/balls/strawberry";
-import { Pear } from "./sprites/balls/pear";
-import { Cherry } from "./sprites/balls/cherry";
+import { DOrange } from "./sprites/balls/d-orange";
+import { CGrape } from "./sprites/balls/c-grape";
+import { ETomato } from "./sprites/balls/e-tomato";
+import { BStrawBerry } from "./sprites/balls/b-strawberry";
 import { Box } from "./sprites/box";
 import { PhysicalObject } from "./sprites/physical-object";
 import { Scene } from "./sprites/scene";
-import { Melon } from "./sprites/balls/melon";
-import { WaterMelon } from "./sprites/balls/watermelon";
-import { Grape } from "./sprites/balls/grape";
+import { FApple } from "./sprites/balls/f-apple";
+import { HPeach } from "./sprites/balls/h-peach";
+import { GPear } from "./sprites/balls/g-pear";
 
 export async function onLoad() {
     (<any>window).Global = Global;
@@ -72,33 +72,11 @@ export async function onLoad() {
         }
         for (let i = 0; i < pop.length; i++) {
             const element = pop[i];
-            let bb;
-            switch (element[0].radius) {
-                case 20:
-                    bb = new Cherry();
-                    break;
-                case 35:
-                    bb = new Strawberry();
-                    break;
-                case 60:
-                    bb = new Orange();
-                    break;
-                case 95:
-                    bb = new Pear();
-                    break;
-                case 120:
-                    bb = new Melon();
-                    break;
-                case 160:
-                    bb = new WaterMelon();
-                    break;
-                case 200:
-                    bb = new Grape();
-                    break;
-                default:
-            }
+            let bb = element[0].onCollide(element[1]);
             if (bb === undefined) continue;
             
+            // add score. bb.Score
+
             scene.detachChildren(element[0]);
             scene.detachChildren(element[1]);
             scene.attachChildren(bb);

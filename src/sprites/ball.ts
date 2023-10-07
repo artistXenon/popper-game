@@ -1,8 +1,7 @@
 import { PhysicalObject } from "./physical-object";
 
-export class Ball extends PhysicalObject {
+export abstract class Ball extends PhysicalObject {
     public radius: number;
-
 
     constructor(positionX: number, positionY: number, radius: number) {
         super(positionX, positionY);
@@ -25,4 +24,8 @@ export class Ball extends PhysicalObject {
         context.fillStyle = "black";
         context.fillRect(-5, 0, 10, 40);
     }
+
+    public abstract get Score(): number;
+
+    public abstract onCollide(ball: Ball): Ball | undefined;
 }

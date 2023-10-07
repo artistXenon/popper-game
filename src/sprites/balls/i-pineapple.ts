@@ -1,10 +1,17 @@
 import { Ball } from "../ball";
+import { JMelon } from "./j-melon";
 
-export class Berry extends Ball {
+export class IPineapple extends Ball {
+    public get Score(): number {
+        return 45;
+    }
+    public onCollide(ball: Ball): Ball | undefined {
+        if (ball instanceof IPineapple) return new JMelon();
+    }
 
     constructor() {
-        super(0, 0, 20);
-        this.weight = 1;
+        super(0, 0, 230);
+        this.weight = 18;
     }
 
     
@@ -17,7 +24,7 @@ export class Berry extends Ball {
         context.strokeStyle = "black";
         context.stroke();
 
-        context.fillStyle = "darkred";
+        context.fillStyle = "green";
         context.fill();
 
         // context.

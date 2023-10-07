@@ -1,6 +1,10 @@
 import { AssetLoader } from "artistic-engine/loader";
 
-import bg_a from "../assets/BG-A.png";
+import face1 from "../../public/face1.png";
+import face2 from "../../public/face2.png";
+import face3 from "../../public/face3.png";
+import face4 from "../../public/face4.png";
+import face5 from "../../public/face5.png";
 
 export class EngineAssets {
     private assetLoader: AssetLoader;
@@ -10,7 +14,11 @@ export class EngineAssets {
     ];
     
     private images = [
-        // { name: "bg_a", source: bg_a },
+        { name: "face1", source: face1 },
+        { name: "face2", source: face2 },
+        { name: "face3", source: face3 },
+        { name: "face4", source: face4 },
+        { name: "face5", source: face5 },
         // { name: "hololive_logo", source: hololive_logo },
     ];
 

@@ -1,10 +1,17 @@
 import { Ball } from "../ball";
+import { KWaterMelon } from "./k-watermelon";
 
-export class Strawberry extends Ball {
+export class JMelon extends Ball {
+    public get Score(): number {
+        return 55;
+    }
+    public onCollide(ball: Ball): Ball | undefined {
+        if (ball instanceof JMelon) return new KWaterMelon();
+    }
 
     constructor() {
-        super(0, 0, 60);
-        this.weight = 1.5;
+        super(0, 0, 270);
+        this.weight = 18;
     }
 
     
@@ -17,7 +24,7 @@ export class Strawberry extends Ball {
         context.strokeStyle = "black";
         context.stroke();
 
-        context.fillStyle = "red";
+        context.fillStyle = "green";
         context.fill();
 
         // context.

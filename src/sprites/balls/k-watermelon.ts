@@ -1,10 +1,16 @@
 import { Ball } from "../ball";
 
-export class Grape extends Ball {
+export class KWaterMelon extends Ball {
+    public get Score(): number {
+        return 0;
+    }
+    public onCollide(ball: Ball): Ball | undefined {
+        return;
+    }
 
     constructor() {
-        super(0, 0, 400);
-        this.weight = 24;
+        super(0, 0, 350);
+        this.weight = 18;
     }
 
     
@@ -17,7 +23,7 @@ export class Grape extends Ball {
         context.strokeStyle = "black";
         context.stroke();
 
-        context.fillStyle = "purple";
+        context.fillStyle = "green";
         context.fill();
 
         // context.

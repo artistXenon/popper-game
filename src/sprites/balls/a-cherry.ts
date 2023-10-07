@@ -36,7 +36,9 @@ export class ACherry extends Ball {
         context.fillStyle = "red";
         context.fill();
 
-        // context.
+        context.beginPath();
+        context.arc(20, -20, 20, Math.PI, Math.PI * 4 / 3);
+        context.stroke();
 
         // face
         if (!this.texture) return;

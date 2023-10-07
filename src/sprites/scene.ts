@@ -5,9 +5,21 @@ import { Ball } from "./ball";
 import { BStrawBerry } from "./balls/b-strawberry";
 import { CGrape } from "./balls/c-grape";
 import { ACherry } from "./balls/a-cherry";
+import { ETomato } from "./balls/e-tomato";
 
 export class Scene extends Sprite implements IPointerListener {
-    private fruitInFocus: Ball | undefined
+    private fruitInFocus: Ball;
+
+    constructor() {
+        super();
+        this.fruitInFocus = new ACherry();
+        
+        this.fruitInFocus.X = this.W / 2;
+        this.fruitInFocus.Y = 100;
+        this.fruitInFocus.isPhysical = false;
+        this.attachChildren(this.fruitInFocus);
+    }
+
     get PointerRegistered(): boolean {
         return true;
     }
@@ -17,11 +29,6 @@ export class Scene extends Sprite implements IPointerListener {
     onPointer(e: PointerEvent): boolean {
         switch (e.type) {
             case "pointermove": 
-                if (this.fruitInFocus === undefined) {
-                    this.fruitInFocus = this.newFruit();
-                    this.fruitInFocus.isPhysical = false;
-                    this.attachChildren(this.fruitInFocus);
-                }
                 this.fruitInFocus.X = e.x;
                 this.fruitInFocus.Y = 100;
                 break;
@@ -45,17 +52,37 @@ export class Scene extends Sprite implements IPointerListener {
         context.fillRect(0, 0, this.W, this.H);
     }
 
-    newFruit() {
+    private newFruit(): Ball {
         const chance = Math.floor(Math.random() * 100);
-        if (chance < 25) {
+        if (chance < 10) {
+            if (
+                (this.fruitInFocus instanceof ACherry && Date.now() % 4 === 0) ||
+                (this.fruitInFocus instanceof BStrawBerry && Date.now() % 2 === 0)
+            ) return this.newFruit();
             return new ACherry();
         }
-        if (chance < 60) {
+        if (chance < 25) {
+            if (
+                (this.fruitInFocus instanceof BStrawBerry && Date.now() % 4 === 0) ||
+                (this.fruitInFocus instanceof CGrape && Date.now() % 2 === 0)
+            ) return this.newFruit();
             return new BStrawBerry();
         }
-        if (chance < 92) {
+        if (chance < 45) {            
+            if (
+                (this.fruitInFocus instanceof CGrape && Date.now() % 4 === 0) ||
+                (this.fruitInFocus instanceof DOrange && Date.now() % 2 === 0)
+            ) return this.newFruit();
             return new CGrape();
         }
-        return new DOrange();
+        if (chance < 75) {       
+            if (
+                (this.fruitInFocus instanceof DOrange && Date.now() % 4 === 0) ||
+                (this.fruitInFocus instanceof ETomato && Date.now() % 2 === 0)
+            ) return this.newFruit();
+            return new DOrange();
+        }
+        if (this.fruitInFocus instanceof ETomato && Date.now() % 4 === 0) return this.newFruit();
+        return new ETomato();
     }
 }

@@ -20,7 +20,7 @@ export class BStrawBerry extends Ball {
         context.arc(0, 0, this.radius, 0, 2 * Math.PI);
         context.closePath();
 
-        context.lineWidth = 3;
+        context.lineWidth = 4;
         context.strokeStyle = "black";
         context.stroke();
 

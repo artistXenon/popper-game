@@ -31,7 +31,7 @@ export class CGrape extends Ball {
             context.arc(pos[0], pos[1], this.radius / 3, 0, 2 * Math.PI);
             context.closePath();
     
-            context.lineWidth = 2;
+            context.lineWidth = 3;
             context.strokeStyle = "black";
             context.stroke();
     

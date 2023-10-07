@@ -1,10 +1,10 @@
 import { AssetLoader } from "artistic-engine/loader";
 
-import face1 from "../../public/face1.png";
-import face2 from "../../public/face2.png";
-import face3 from "../../public/face3.png";
-import face4 from "../../public/face4.png";
-import face5 from "../../public/face5.png";
+import face1 from "../assets/face1.png";
+import face2 from "../assets/face2.png";
+import face3 from "../assets/face3.png";
+import face4 from "../assets/face4.png";
+import face5 from "../assets/face5.png";
 
 export class EngineAssets {
     private assetLoader: AssetLoader;

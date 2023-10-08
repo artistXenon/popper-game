@@ -1,7 +1,10 @@
+import { Global } from "../../global";
 import { Ball } from "../ball";
 import { JMelon } from "./j-melon";
 
 export class IPineapple extends Ball {
+    private texture: ImageBitmap | undefined;
+
     public get Score(): number {
         return 45;
     }
@@ -11,7 +14,12 @@ export class IPineapple extends Ball {
 
     constructor() {
         super(0, 0, 230);
-        this.weight = 18;
+        this.weight = 40;
+        const blob: Blob = Global.Engine.AssetLoader.getImage("face8");
+
+        createImageBitmap(blob).then((b) => {
+            this.texture = b;
+        });
     }
 
     

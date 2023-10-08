@@ -1,7 +1,10 @@
+import { Global } from "../../global";
 import { Ball } from "../ball";
 import { KWaterMelon } from "./k-watermelon";
 
 export class JMelon extends Ball {
+    private texture: ImageBitmap | undefined;
+
     public get Score(): number {
         return 55;
     }
@@ -11,7 +14,12 @@ export class JMelon extends Ball {
 
     constructor() {
         super(0, 0, 270);
-        this.weight = 18;
+        this.weight = 50;
+        const blob: Blob = Global.Engine.AssetLoader.getImage("face9");
+
+        createImageBitmap(blob).then((b) => {
+            this.texture = b;
+        });
     }
 
     
@@ -24,13 +32,14 @@ export class JMelon extends Ball {
         context.strokeStyle = "black";
         context.stroke();
 
-        context.fillStyle = "green";
+        context.fillStyle = "#afa";
         context.fill();
 
         // context.
 
         // face
-        context.fillStyle = "black";
-        context.fillRect(-5, 0, 10, 40);
+        if (!this.texture) return;
+        
+        context.drawImage(this.texture, -64, -60);
     }
 }

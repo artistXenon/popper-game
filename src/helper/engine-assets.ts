@@ -5,6 +5,11 @@ import face2 from "../assets/face2.png";
 import face3 from "../assets/face3.png";
 import face4 from "../assets/face4.png";
 import face5 from "../assets/face5.png";
+import face6 from "../assets/face6.png";
+import face7 from "../assets/face7.png";
+import face8 from "../assets/face8.png";
+import face9 from "../assets/face9.png";
+import face10 from "../assets/face10.png";
 
 export class EngineAssets {
     private assetLoader: AssetLoader;
@@ -19,6 +24,11 @@ export class EngineAssets {
         { name: "face3", source: face3 },
         { name: "face4", source: face4 },
         { name: "face5", source: face5 },
+        { name: "face6", source: face6 },
+        { name: "face7", source: face7 },
+        { name: "face8", source: face8 },
+        { name: "face9", source: face9 },
+        { name: "face10", source: face10 },
         // { name: "hololive_logo", source: hololive_logo },
     ];
 

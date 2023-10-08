@@ -33,17 +33,14 @@ export class Scene extends Sprite implements IPointerListener {
                 this.fruitInFocus.Y = 100;
                 break;
             case "pointerup": 
-                if (this.fruitInFocus) {
-                    this.fruitInFocus.isPhysical = true;                        
-                    this.fruitInFocus = this.newFruit();
-                    
-                    this.fruitInFocus.X = this.W / 2;
-                    this.fruitInFocus.Y = 100;
-                    this.fruitInFocus.isPhysical = false;
-                    this.attachChildren(this.fruitInFocus);
-                }
+                this.fruitInFocus.isPhysical = true;                        
+                const x = this.fruitInFocus.X;
+                this.fruitInFocus = this.newFruit();
                 
-
+                this.fruitInFocus.X = x;
+                this.fruitInFocus.Y = 100;
+                this.fruitInFocus.isPhysical = false;
+                this.attachChildren(this.fruitInFocus);
         }
         return true;
     }

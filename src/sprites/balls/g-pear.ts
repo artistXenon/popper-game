@@ -1,7 +1,10 @@
+import { Global } from "../../global";
 import { Ball } from "../ball";
 import { HPeach } from "./h-peach";
 
 export class GPear extends Ball {
+    private texture: ImageBitmap | undefined;
+
     public get Score(): number {
         return 28;
     }
@@ -11,7 +14,12 @@ export class GPear extends Ball {
 
     constructor() {
         super(0, 0, 140);
-        this.weight = 24;
+        this.weight = 24;        
+        const blob: Blob = Global.Engine.AssetLoader.getImage("face6");
+
+        createImageBitmap(blob).then((b) => {
+            this.texture = b;
+        });
     }
 
     
@@ -24,13 +32,14 @@ export class GPear extends Ball {
         context.strokeStyle = "black";
         context.stroke();
 
-        context.fillStyle = "purple";
+        context.fillStyle = "#bb3";
         context.fill();
 
         // context.
 
         // face
-        context.fillStyle = "black";
-        context.fillRect(-5, 0, 10, 40);
+        if (!this.texture) return;
+        
+        context.drawImage(this.texture, -64, -60);
     }
 }

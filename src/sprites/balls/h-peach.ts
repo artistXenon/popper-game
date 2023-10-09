@@ -5,6 +5,8 @@ import { IPineapple } from "./i-pineapple";
 export class HPeach extends Ball {
     private texture: ImageBitmap | undefined;
 
+    private gradient: CanvasGradient;
+
     public get Score(): number {
         return 36;
     }
@@ -20,6 +22,10 @@ export class HPeach extends Ball {
         createImageBitmap(blob).then((b) => {
             this.texture = b;
         });
+
+        this.gradient = Global.Engine.Context.createLinearGradient(0, -210, 0, 210);
+        this.gradient.addColorStop(0, "#faa");
+        this.gradient.addColorStop(1, "#fff");
     }
 
     
@@ -28,11 +34,11 @@ export class HPeach extends Ball {
         context.arc(0, 0, this.radius, 0, 2 * Math.PI);
         context.closePath();
 
-        context.lineWidth = 3;
-        context.strokeStyle = "black";
+        context.lineWidth = 10;
+        context.strokeStyle = "#d55";
         context.stroke();
 
-        context.fillStyle = "#fcc";
+        context.fillStyle = this.gradient;
         context.fill();
 
         // context.

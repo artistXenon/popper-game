@@ -32,8 +32,32 @@ export class GPear extends Ball {
         context.strokeStyle = "black";
         context.stroke();
 
-        context.fillStyle = "#bb3";
+        context.fillStyle = "#dd3";
         context.fill();
+        
+        context.fillStyle = "#aa6";
+        const poss = [
+            [100, 60],
+            [110, 0],
+            [90, 100],
+            [120, 34],
+            [72, 110],
+            [120, -20]
+        ]; 
+        for (const pos of poss) {
+            context.beginPath();
+            context.arc(pos[1], -pos[0], 2, 0, 2 * Math.PI);
+            context.closePath();
+            context.fill();
+            context.beginPath();
+            context.arc(pos[0], pos[1], 2, 0, 2 * Math.PI);
+            context.closePath();
+            context.fill();
+        }
+
+        context.fillStyle = "black";
+        context.fillRect(0, -150, 5, 30);
+        
 
         // context.
 

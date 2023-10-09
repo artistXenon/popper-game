@@ -32,13 +32,14 @@ export class IPineapple extends Ball {
         context.strokeStyle = "black";
         context.stroke();
 
-        context.fillStyle = "green";
+        context.fillStyle = "#ddc";
         context.fill();
 
         // context.
 
         // face
-        context.fillStyle = "black";
-        context.fillRect(-5, 0, 10, 40);
+        if (!this.texture) return;
+        
+        context.drawImage(this.texture, -64, -64);
     }
 }

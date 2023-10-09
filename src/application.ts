@@ -3,16 +3,9 @@ import { PointerEventGroup } from "artistic-engine/event";
 import { Global } from "./global";
 import { fixBalltoBallPenetration, fixBalltoWallPenetration, onBalltoBallCollision, updateKineticVector } from "./helper/physical-interaction";
 import { Ball } from "./sprites/ball";
-import { DOrange } from "./sprites/balls/d-orange";
-import { CGrape } from "./sprites/balls/c-grape";
-import { ETomato } from "./sprites/balls/e-tomato";
-import { BStrawBerry } from "./sprites/balls/b-strawberry";
 import { Box } from "./sprites/box";
 import { PhysicalObject } from "./sprites/physical-object";
 import { Scene } from "./sprites/scene";
-import { FApple } from "./sprites/balls/f-apple";
-import { HPeach } from "./sprites/balls/h-peach";
-import { GPear } from "./sprites/balls/g-pear";
 
 export async function onLoad() {
     (<any>window).Global = Global;
@@ -55,7 +48,7 @@ export async function onLoad() {
                         if (fixBalltoBallPenetration(subject, object)) { // two balls collided
 
                             if (subject.radius === object.radius) {
-                                pop.push([subject, object]);                          ;
+                                pop.push([subject, object]);
                             }
                             onBalltoBallCollision(subject, object);
                         }

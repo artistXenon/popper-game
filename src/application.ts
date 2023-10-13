@@ -66,7 +66,8 @@ export async function onLoad() {
                             const l = scene.Children;
                             for (let child of l) {
                                 if (child instanceof Ball) scene.detachChildren(child);
-                            }       
+                            }      
+                            alert("GAME OVER: " + Global.score + "pt"); 
                             return;
                         }             
                     }

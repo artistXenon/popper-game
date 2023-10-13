@@ -8,7 +8,7 @@ export class Box extends PhysicalObject {
         super(0, 0);
     }
 
-    onDraw(context: CanvasRenderingContext2D, delay: number): void {
+    onDraw(context: CanvasRenderingContext2D, _: number): void {
         this.W = this.WallTo.X - this.X;
         this.H = this.WallTo.Y - this.Y;
         context.beginPath();

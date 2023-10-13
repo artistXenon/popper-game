@@ -8,8 +8,6 @@ import { Global } from './global';
 import { onLoad } from './application';
 import { CupResizer } from './cup-resizer';
 import { PointerEventGroup } from 'artistic-engine/event';
-import { ComputedVector2D } from './helper/computed-vector2D';
-import { Box } from './sprites/box';
 import { Scene } from './sprites/scene';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<canvas id="main"></canvas>`;

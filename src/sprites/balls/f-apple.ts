@@ -24,7 +24,7 @@ export class FApple extends Ball {
     }
 
     
-    onDraw(context: CanvasRenderingContext2D, delay: number): void {
+    onDraw(context: CanvasRenderingContext2D, _: number): void {
         context.beginPath();
         context.arc(0, 0, this.radius, 0, 2 * Math.PI);
         context.closePath();

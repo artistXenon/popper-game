@@ -23,7 +23,7 @@ export class ComputedVector2D extends Vector.Vector2D {
         return this.values[1];
     }
 
-    public override copy<T>(v: T, force: boolean = false) {
+    public override copy<T>(v: T, _: boolean = false) {
         const vt = <Vector.Vector2D>v;
         vt.X = this.X;
         vt.Y = this.Y;

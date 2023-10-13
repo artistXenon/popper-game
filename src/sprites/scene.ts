@@ -93,7 +93,7 @@ export class Scene extends Sprite implements IPointerListener {
         }
         return true;
     }
-    onDraw(context: CanvasRenderingContext2D, delay: number): void {
+    onDraw(context: CanvasRenderingContext2D, _: number): void {
         context.fillStyle = "#ffd";
         context.fillRect(0, 0, this.W, this.H);
         this.score.Text = Global.score + "";

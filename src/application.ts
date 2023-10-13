@@ -1,6 +1,3 @@
-import { Modifier } from "artistic-engine/modifiers";
-import { AssetLoader } from "artistic-engine/loader";
-
 import { Global } from "./global";
 import { fixBalltoBallPenetration, fixBalltoWallPenetration, onBalltoBallCollision, updateKineticVector } from "./helper/physical-interaction";
 import { Ball } from "./sprites/ball";

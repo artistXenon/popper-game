@@ -24,7 +24,7 @@ export class CGrape extends Ball {
     }
 
     
-    onDraw(context: CanvasRenderingContext2D, delay: number): void {
+    onDraw(context: CanvasRenderingContext2D, _: number): void {
         const poss = [[0, 0], [0, 27], [0, -27], [20, 13], [-20, 13], [28, -20], [-28, -20]];
         for (const pos of poss) {
             context.beginPath();

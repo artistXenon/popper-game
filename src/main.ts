@@ -6,6 +6,11 @@ import { EngineAssets } from './helper/engine-assets';
 import { ResolutionVector2D } from './helper/resolution-vector2D';
 import { Global } from './global';
 import { onLoad } from './application';
+import { CupResizer } from './cup-resizer';
+import { PointerEventGroup } from 'artistic-engine/event';
+import { ComputedVector2D } from './helper/computed-vector2D';
+import { Box } from './sprites/box';
+import { Scene } from './sprites/scene';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<canvas id="main"></canvas>`;
 
@@ -20,6 +25,16 @@ engine.start();
 
 const assets = new EngineAssets(engine.AssetLoader);
 
+const scene = new Scene();
+engine.Scene = scene;
+scene.Width = engine.Canvas.width;
+scene.Height = engine.Canvas.height;
+
+const pEventGroup = new PointerEventGroup(engine);
+pEventGroup.registerPointerListener(scene);
+pEventGroup.registerEvent();
+
+
 assets.onLoad = onLoad;
 
 function onResize() {  
@@ -30,4 +45,5 @@ function onResize() {
         engine.Scene.Width = engine.Canvas.width;
         engine.Scene.Height = engine.Canvas.height;
     }
+    CupResizer.resize(engine.Canvas.width, engine.Canvas.height);
 }

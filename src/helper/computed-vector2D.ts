@@ -22,4 +22,11 @@ export class ComputedVector2D extends Vector.Vector2D {
         if (this.getY !== undefined) return this.getY();
         return this.values[1];
     }
+
+    public override copy<T>(v: T, force: boolean = false) {
+        const vt = <Vector.Vector2D>v;
+        vt.X = this.X;
+        vt.Y = this.Y;
+        return v;
+    }
 }

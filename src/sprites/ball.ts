@@ -1,6 +1,8 @@
 import { PhysicalObject } from "./physical-object";
 
 export abstract class Ball extends PhysicalObject {
+    public out: boolean = false;
+    public outSince: number = 0;
     public radius: number;
 
     constructor(positionX: number, positionY: number, radius: number) {

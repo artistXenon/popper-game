@@ -20,6 +20,6 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
-    "artistic-engine": "^1.2.10"
+    "artistic-engine": "^1.2.11"
   }
 }

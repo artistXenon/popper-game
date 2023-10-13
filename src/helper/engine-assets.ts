@@ -31,17 +31,20 @@ export class EngineAssets {
         { name: "face10", source: face10 },
         // { name: "hololive_logo", source: hololive_logo },
     ];
+    
+    private audios = [
+    ];
 
     constructor(assetLoader: AssetLoader) {
         this.assetLoader = assetLoader;
 
         this.registerFonts();
         this.registerImages();
+        this.registerAudios();      
 
         this.assetLoader.onLoad = () => {
             this.onLoad();
         }
-        this.assetLoader.load();
     }
 
     private registerFonts() {
@@ -53,6 +56,12 @@ export class EngineAssets {
     public registerImages() {
         for (const { name, source } of this.images) {
             this.assetLoader.addImages(name, source);    
+        }
+    }
+    
+    public registerAudios() {
+        for (const { name, source } of this.audios) {
+            this.assetLoader.addAudios(name, source);    
         }
     }
 

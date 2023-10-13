@@ -1,4 +1,5 @@
-import { PointerEventGroup } from "artistic-engine/event";
+import { Modifier } from "artistic-engine/modifiers";
+import { AssetLoader } from "artistic-engine/loader";
 
 import { Global } from "./global";
 import { fixBalltoBallPenetration, fixBalltoWallPenetration, onBalltoBallCollision, updateKineticVector } from "./helper/physical-interaction";
@@ -6,24 +7,13 @@ import { Ball } from "./sprites/ball";
 import { Box } from "./sprites/box";
 import { PhysicalObject } from "./sprites/physical-object";
 import { Scene } from "./sprites/scene";
+import { CupResizer } from "./cup-resizer";
 
 export async function onLoad() {
     (<any>window).Global = Global;
 
     const engine = Global.Engine;
-
-    const scene = new Scene();
-    engine.Scene = scene;
-    scene.Width = engine.Canvas.width;
-    scene.Height = engine.Canvas.height;
-
-    const children = [
-        new Box(0, 0, 0, scene.H, 1),
-        new Box(0, scene.H - 100, scene.W, 0, 0),
-        new Box(scene.W, 0, 0, scene.H, 1),
-    ];
-
-    scene.attachChildren(children);
+    const scene = <Scene>engine.Scene;
 
     // children[2].angleVelocity = Math.PI / 6;
 
@@ -62,13 +52,39 @@ export async function onLoad() {
                 }
             }
             updateKineticVector(subject, delay);
+
+            if (subject instanceof Ball) {
+                if (
+                    subject.X > CupResizer.rightX || 
+                    subject.X < CupResizer.leftX || 
+                    subject.Y > CupResizer.bottomY || 
+                    subject.Y < CupResizer.topY
+                ) {
+                    if (!subject.out) {
+                        subject.out = true;
+                        subject.outSince = Date.now();
+                    } else {
+                        if (Date.now() - subject.outSince > 3000) {
+                            Global.score = 0;
+                            const l = scene.Children;
+                            for (let child of l) {
+                                if (child instanceof Ball) scene.detachChildren(child);
+                            }       
+                            return;
+                        }             
+                    }
+                } else {
+                    subject.out = false;
+                }
+            }            
         }
         for (let i = 0; i < pop.length; i++) {
             const element = pop[i];
             let bb = element[0].onCollide(element[1]);
             if (bb === undefined) continue;
             
-            // add score. bb.Score
+            Global.score += bb.Score;
+            if (Global.score > Global.highScore) Global.highScore = Global.score;
 
             scene.detachChildren(element[0]);
             scene.detachChildren(element[1]);
@@ -80,8 +96,9 @@ export async function onLoad() {
         }        
         pop = [];
     });
-
-    const pEventGroup = new PointerEventGroup(engine);
-    pEventGroup.registerPointerListener(scene);
-    pEventGroup.registerEvent();
+    const audios: AudioBufferSourceNode[] = [];
+    const audioGains: GainNode[] = [];
+    audios.length = 4;
+    audioGains.length = 4;
+    scene.loadFruit();
 }

@@ -62,12 +62,12 @@ export async function onLoad() {
                         subject.outSince = Date.now();
                     } else {
                         if (Date.now() - subject.outSince > 3000) {
-                            Global.score = 0;
                             const l = scene.Children;
                             for (let child of l) {
                                 if (child instanceof Ball) scene.detachChildren(child);
                             }      
                             alert("GAME OVER: " + Global.score + "pt"); 
+                            Global.score = 0;
                             return;
                         }             
                     }
